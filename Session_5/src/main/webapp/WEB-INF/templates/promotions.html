@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{main-layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title th:text="${titlePage}">Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        th, td {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+<div layout:fragment="content" class="container mx-auto px-4 flex flex-col items-center justify-center">
+
+    <h1 class="text-2xl font-bold text-center my-8 text-gray-800" th:text="${titlePage}"></h1>
+
+    <div th:if="${not #lists.isEmpty(items)}"
+         class="overflow-hidden w-[50%] rounded-md border border-gray-200 shadow-md">
+        <table class="w-full text-sm text-center">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+            <tr>
+                <th>Name</th>
+                <th>Original Price</th>
+                <th>Discount (%)</th>
+                <th>Price Discount</th>
+            </tr>
+            </thead>
+            <tbody class="bg-white">
+            <tr th:each="i : ${items}" class="border-b hover:bg-gray-50 transition-colors">
+                <td class="w-fit">
+                    <span th:text="${i.name}"></span>
+                    <span th:if="${i.discountPercent>20}"
+                          class="text-red-600 text-xs font-semibold bg-red-100 px-2 py-1 rounded inline-block">🔥Hot Deal</span>
+                </td>
+                <td th:text="${#numbers.formatDecimal(i.originalPrice,0,'POINT',0,'POINT')} + ' VNĐ'"></td>
+                <td th:text="${i.discountPercent + '%'}"></td>
+                <td th:text="${#numbers.formatDecimal(i.originalPrice*(100 - i.discountPercent)/100,0,'POINT',0,'POINT')} + ' VNĐ'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${#lists.isEmpty(items)}"
+         class="text-center py-20 bg-white rounded-xl border border-dashed border-gray-300">
+        <p class="text-xl font-medium text-gray-600">
+            Hiện chưa có chương trình ưu đãi, quý khách vui lòng quay lại sau!
+        </p>
+    </div>
+</div>
+</body>
+</html>

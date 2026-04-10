@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout/main-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Chỉnh Sửa Khóa Học - EDU-PATH</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg border-0">
+                    <div class="card-header bg-warning text-dark">
+                        <h4 class="mb-0">
+                            <i class="fas fa-edit"></i> Chỉnh Sửa Thông Tin Khóa Học
+                        </h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form th:action="@{/course/edit}" th:object="${course}" method="post">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Mã Khóa Học</label>
+                                <input type="text" th:field="*{code}" class="form-control" readonly>
+                                <small class="text-muted">Mã khóa học không thể thay đổi</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Tên Khóa Học</label>
+                                <input type="text" th:field="*{name}" class="form-control" readonly disabled>
+                                <small class="text-muted">Tên khóa học không thể thay đổi</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Trình Độ</label>
+                                <input type="text" th:field="*{level}" class="form-control" readonly>
+                                <small class="text-muted">Trình độ không thể thay đổi</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Giảng Viên</label>
+                                <input type="text" th:field="*{instructor}" class="form-control" readonly>
+                                <small class="text-muted">Giảng viên không thể thay đổi</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Thời Lượng</label>
+                                <input type="text" th:field="*{duration}" class="form-control" readonly>
+                                <small class="text-muted">Thời lượng không thể thay đổi</small>
+                            </div>
+
+                            <hr>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Học Phí (VNĐ) <span class="text-danger">*</span></label>
+                                <input type="number" step="0.01" th:field="*{tuitionFee}" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Ngày Khai Giảng <span class="text-danger">*</span></label>
+                                <input type="date" th:field="*{startDate}" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Mô Tả</label>
+                                <textarea th:field="*{description}" class="form-control" rows="3"></textarea>
+                            </div>
+
+                            <div class="d-flex gap-2 mt-4">
+                                <a th:href="@{/course/detail/{code}(code=${course.code})}" type="submit" class="btn btn-success btn-lg flex-grow-1">
+                                    <i class="fas fa-save"></i> Lưu Thay Đổi
+                                </a>
+                                <a th:href="@{/course/detail/{code}(code=${course.code})}" class="btn btn-secondary btn-lg flex-grow-1">
+                                    <i class="fas fa-times"></i> Hủy
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

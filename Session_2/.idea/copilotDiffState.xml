@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="/build (snapshot).gradle">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="/build (snapshot).gradle" />
+              <option name="originalContent" value="plugins {&#10;    id 'java'&#10;    id 'war'&#10;}&#10;&#10;group 'atmin'&#10;version '1.0-SNAPSHOT'&#10;&#10;repositories {&#10;    mavenCentral()&#10;}&#10;&#10;ext {&#10;    junitVersion = '5.13.2'&#10;}&#10;&#10;tasks.withType(JavaCompile).configureEach {&#10;    options.encoding = 'UTF-8'&#10;}&#10;&#10;dependencies {&#10;    compileOnly('javax.servlet:javax.servlet-api:4.0.1')&#10;&#10;    testImplementation(&quot;org.junit.jupiter:junit-jupiter-api:${junitVersion}&quot;)&#10;    testRuntimeOnly(&quot;org.junit.jupiter:junit-jupiter-engine:${junitVersion}&quot;)&#10;&#10;    implementation(&quot;org.springframework:spring-webmvc:5.3.39&quot;)&#10;    implementation(&quot;org.springframework:spring-jdbc:5.3.39&quot;)&#10;    implementation(&quot;javax.servlet:jstl:1.2&quot;)&#10;    runtimeOnly(&quot;com.h2database:h2:2.3.232&quot;)&#10;}&#10;&#10;test {&#10;    useJUnitPlatform()&#10;}" />
+              <option name="updatedContent" value="plugins {&#10;    id 'java'&#10;    id 'war'&#10;}&#10;&#10;group 'atmin'&#10;version '1.0-SNAPSHOT'&#10;&#10;repositories {&#10;    mavenCentral()&#10;}&#10;&#10;ext {&#10;    junitVersion = '5.13.2'&#10;}&#10;&#10;tasks.withType(JavaCompile).configureEach {&#10;    options.encoding = 'UTF-8'&#10;}&#10;&#10;dependencies {&#10;    compileOnly('javax.servlet:javax.servlet-api:4.0.1')&#10;&#10;    testImplementation(&quot;org.junit.jupiter:junit-jupiter-api:${junitVersion}&quot;)&#10;    testRuntimeOnly(&quot;org.junit.jupiter:junit-jupiter-engine:${junitVersion}&quot;)&#10;&#10;    implementation(&quot;org.springframework:spring-webmvc:5.3.39&quot;)&#10;    implementation(&quot;org.springframework:spring-jdbc:5.3.39&quot;)&#10;    implementation(&quot;javax.servlet:jstl:1.2&quot;)&#10;    runtimeOnly(&quot;com.h2database:h2:2.3.232&quot;)&#10;}&#10;&#10;test {&#10;    useJUnitPlatform()&#10;}&#10;&#10;war {&#10;    archiveName = 'ROOT.war'&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

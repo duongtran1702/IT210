@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="pl-10 ">
+<a th:href="@{/add-student}" class="inline-block px-3 py-1 bg-blue-500 text-white rounded-[5px] my-5">
+    Add Student
+</a>
+<table class="border-collapse">
+    <thead>
+    <tr>
+        <th class="border border-gray-500 px-4 py-1.5">ID</th>
+        <th class="border border-gray-500 px-4 py-1.5">Name</th>
+        <th class="border border-gray-500 px-4 py-1.5">Age</th>
+        <th class="border border-gray-500 px-4 py-1.5">Gender</th>
+        <th class="border border-gray-500 px-4 py-1.5">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s:${students}">
+        <td class="border border-t border-gray-500 px-4 py-1.5" th:text="${s.id}"></td>
+        <td class="border border-t border-gray-500 px-4 py-1.5" th:text="${s.name}"></td>
+        <td class="border border-t border-gray-500 px-4 py-1.5" th:text="${s.age}"></td>
+        <td class="border border-t border-gray-500 px-4 py-1.5" th:text="${s.gender}"></td>
+        <td class="border border-t border-gray-500 px-4 py-1.5" >
+            <a th:href="@{/edit/{id}(id=${s.id})}" class="inline-block px-3 py-1 bg-green-500 text-white rounded-[5px]">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

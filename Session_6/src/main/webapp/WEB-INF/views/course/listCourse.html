@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout/main-layout}">
+<head>
+    <title>Danh Sách Khóa Học - EDU-PATH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div layout:fragment="content">
+    <!-- Alert Messages -->
+    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> <strong>Thành công!</strong> [[${successMessage}]]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-circle"></i> <strong>Lỗi!</strong> [[${errorMessage}]]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <!-- Search Form -->
+    <div class="card shadow-sm mb-4 border-0">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fas fa-search"></i> Tìm Kiếm Khóa Học</h5>
+        </div>
+        <div class="card-body">
+            <form th:action="@{list}" method="get">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Trình Độ:</label>
+                        <select class="form-select" name="level" id="level">
+                            <option value="">-- Tất Cả --</option>
+                            <option value="Beginner" th:selected="${selectLevel == 'Beginner'}">Beginner (Cơ Bản)</option>
+                            <option value="Intermediate" th:selected="${selectLevel == 'Intermediate'}">Intermediate (Trung Bình)</option>
+                            <option value="Advanced" th:selected="${selectLevel == 'Advanced'}">Advanced (Nâng Cao)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Học Phí Tối Đa (VNĐ):</label>
+                        <input type="text" th:value="${maxFee}" class="form-control" name="maxFee" placeholder="VD: 5000000">
+                    </div>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-search"></i> Tìm Kiếm
+                    </button>
+                    <a href="/course/list" class="btn btn-outline-secondary btn-lg">
+                        <i class="fas fa-redo"></i> Đặt Lại
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Empty State -->
+    <div th:if="${#lists.isEmpty(courses)}" class="alert alert-warning alert-lg text-center">
+        <i class="fas fa-inbox fa-3x mb-3"></i>
+        <h5>Không Tìm Thấy Khóa Học</h5>
+        <p class="mb-0">Hiện chưa có khóa học phù hợp với tiêu chí tìm kiếm của bạn.</p>
+    </div>
+
+    <!-- Courses Table -->
+    <div th:unless="${#lists.isEmpty(courses)}">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0"><i class="fas fa-list"></i> Danh Sách Khóa Học (<span th:text="${courses.size()}"></span>)</h5>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                    <tr>
+                        <th style="width: 12%;"><i class="fas fa-code"></i> Mã Khóa</th>
+                        <th style="width: 25%;"><i class="fas fa-book"></i> Tên Khóa Học</th>
+                        <th style="width: 15%;"><i class="fas fa-chart-line"></i> Trình Độ</th>
+                        <th style="width: 15%;"><i class="fas fa-money-bill"></i> Học Phí</th>
+                        <th style="width: 33%;"><i class="fas fa-cog"></i> Hành Động</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="course : ${courses}" class="align-middle">
+                        <td>
+                            <span class="badge bg-info">[[${course.code}]]</span>
+                        </td>
+                        <td>
+                            <strong th:text="${course.name}"></strong>
+                        </td>
+                        <td>
+                            <span th:if="${course.level == 'Beginner'}" class="badge bg-success">Cơ Bản</span>
+                            <span th:if="${course.level == 'Intermediate'}" class="badge bg-warning">Trung Bình</span>
+                            <span th:if="${course.level == 'Advanced'}" class="badge bg-danger">Nâng Cao</span>
+                        </td>
+                        <td>
+                            <span class="text-success fw-bold">[[${#numbers.formatDecimal(course.tuitionFee,0,'COMMA',0,'POINT')}]] VNĐ</span>
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a th:href="@{/course/detail/{code}(code=${course.code})}" class="btn btn-sm btn-info text-white" title="Xem chi tiết">
+                                    <i class="fas fa-eye"></i> Xem Chi Tiết
+                                </a>
+                                <a th:href="@{/course/edit/{code}(code=${course.code})}" class="btn btn-sm btn-warning" title="Chỉnh sửa">
+                                    <i class="fas fa-edit"></i> Sửa
+                                </a>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('[[${course.code}]]')" title="Xóa">
+                                    <i class="fas fa-trash"></i> Xóa
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Xác Nhận Xóa</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa khóa học <strong id="courseCode"></strong> không?</p>
+                <p class="text-muted"><small>Thao tác này không thể hoàn tác!</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <a id="deleteLink" href="#" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Xóa Ngay
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

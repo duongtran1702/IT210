@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen">
+<div class="bg-white p-6 rounded-lg shadow-sm w-80 text-center">
+    <h2 class="font-bold text-gray-700 mb-4">Tải ảnh hệ thống</h2>
+
+    <form th:action="@{/upload/process}" method="post" enctype="multipart/form-data" class="space-y-4">
+        <input type="file" name="file"
+               class="block w-full text-sm text-slate-500
+                          file:mr-4 file:py-2 file:px-4
+                          file:rounded-full file:border-0
+                          file:text-sm file:font-semibold
+                          file:bg-blue-50 file:text-blue-700
+                          hover:file:bg-blue-100" required />
+
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
+            Tải lên ngay
+        </button>
+    </form>
+
+    <p th:if="${error}" th:text="${error}" class="text-red-500 text-xs mt-2"></p>
+</div>
+</body>
+</html>
+# Commit với CẢ author date VÀ committer date
+$env:GIT_AUTHOR_DATE="2026-04-05T13:29:00+07:00"
+$env:GIT_COMMITTER_DATE="2026-04-05T13:29:00+07:00"
+git commit  -m "first commit"
+
+# Xóa biến môi trường
+Remove-Item Env:\GIT_AUTHOR_DATE
+Remove-Item Env:\GIT_COMMITTER_DATE

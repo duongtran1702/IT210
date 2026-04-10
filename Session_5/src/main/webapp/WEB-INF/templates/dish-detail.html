@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{main-layout}" lang="en">
+<body>
+<div layout:fragment="content" class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
+    <h2 class="text-2xl font-bold mb-4">Chi tiết món ăn</h2>
+    <div class="space-y-2">
+        <p><strong>ID:</strong> <span th:text="${dish.id}">1</span></p>
+        <p><strong>Tên món:</strong> <span th:text="${dish.name}">Món ăn mẫu</span></p>
+        <p><strong>Giá:</strong> <span th:text="${dish.price}">100,000</span> VNĐ</p>
+        <p><strong>Trạng thái:</strong>
+            <span th:text="${dish.available ? 'Đang bán' : 'Ngừng kinh doanh'}">Đang bán</span>
+        </p>
+    </div>
+</div>
+</body>
+</html>

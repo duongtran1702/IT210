@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout/main-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi Tiết Khóa Học - EDU-PATH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> [[${successMessage}]]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-book"></i> [[${course.name}]]
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">
+                        <strong>Mã khóa học:</strong>
+                        <span class="badge bg-info">[[${course.code}]]</span>
+                    </p>
+
+                    <table class="table table-borderless">
+                        <tbody>
+                        <tr>
+                            <th style="width: 35%;" class="text-end pe-4">
+                                <i class="fas fa-chart-line text-warning"></i> Trình Độ
+                            </th>
+                            <td>
+                                <span th:if="${course.level == 'Beginner'}" class="badge bg-success fs-6">Cơ Bản</span>
+                                <span th:if="${course.level == 'Intermediate'}" class="badge bg-warning text-dark fs-6">Trung Bình</span>
+                                <span th:if="${course.level == 'Advanced'}" class="badge bg-danger fs-6">Nâng Cao</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end pe-4">
+                                <i class="fas fa-money-bill text-success"></i> Học Phí
+                            </th>
+                            <td>
+                                <span class="text-success fs-5 fw-bold">
+                                    [[${#numbers.formatDecimal(course.tuitionFee, 0, 'COMMA', 0, 'POINT')}]] VNĐ
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end pe-4">
+                                <i class="fas fa-user text-primary"></i> Giảng Viên
+                            </th>
+                            <td>[[${course.instructor}]]</td>
+                        </tr>
+                        <tr>
+                            <th class="text-end pe-4">
+                                <i class="fas fa-clock text-info"></i> Thời Lượng
+                            </th>
+                            <td>[[${course.duration}]]</td>
+                        </tr>
+                        <tr>
+                            <th class="text-end pe-4">
+                                <i class="fas fa-calendar text-danger"></i> Ngày Khai Giảng
+                            </th>
+                            <td>[[${#temporals.format(course.startDate, 'dd/MM/yyyy')}]]</td>
+                        </tr>
+                        <tr>
+                            <th class="text-end pe-4">
+                                <i class="fas fa-users text-secondary"></i> Số Học Viên
+                            </th>
+                            <td>
+                                <span class="badge bg-secondary fs-6">[[${course.studentCount}]] học viên</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end pe-4">
+                                <i class="fas fa-check text-success"></i> Trạng Thái
+                            </th>
+                            <td>
+                                <span th:if="${course.isFull}" class="badge bg-danger fs-6">
+                                    <i class="fas fa-times-circle"></i> Đã Đủ Chỗ
+                                </span>
+                                <span th:unless="${course.isFull}" class="badge bg-success fs-6">
+                                    <i class="fas fa-check-circle"></i> Còn Chỗ
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end pe-4 align-top pt-3">
+                                <i class="fas fa-list text-info"></i> Lộ Trình Học
+                            </th>
+                            <td>
+                                <p th:text="${course.description}"></p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <hr>
+
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a th:href="@{/course/list}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left"></i> Quay Lại Danh Sách
+                        </a>
+                        <a th:href="@{/course/edit/{code}(code=${course.code})}" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Chỉnh Sửa
+                        </a>
+                        <a type="button" class="btn btn-danger" th:href="@{/course/list}">
+                            <i class="fas fa-trash"></i> Xóa Khóa Học
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 mb-3">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-info-circle"></i> Thông Tin Nhanh</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-user-tie fa-2x text-primary me-3"></i>
+                        <div>
+                            <small class="text-muted">Giảng Viên</small>
+                            <p class="mb-0 fw-bold">[[${course.instructor}]]</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-hourglass-half fa-2x text-warning me-3"></i>
+                        <div>
+                            <small class="text-muted">Thời Lượng</small>
+                            <p class="mb-0 fw-bold">[[${course.duration}]]</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-users fa-2x text-success me-3"></i>
+                        <div>
+                            <small class="text-muted">Tổng Học Viên</small>
+                            <p class="mb-0 fw-bold">[[${course.studentCount}]] / ? người</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0 bg-light">
+                <div class="card-body text-center">
+                    <h6 class="text-muted mb-2">Mã Khóa Học</h6>
+                    <p class="display-6 fw-bold text-primary mb-0">[[${course.code}]]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Xác Nhận Xóa</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa khóa học <strong id="courseCode"></strong> không?</p>
+                <p class="text-muted"><small>Thao tác này không thể hoàn tác!</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <a id="deleteLink" href="#" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Xóa Ngay
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

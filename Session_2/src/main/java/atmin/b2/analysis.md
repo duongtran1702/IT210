@@ -1,0 +1,13 @@
+# Phân tích Logic và Lỗi trong File report.jsp
+
+Dưới đây là bảng phân tích chi tiết 5 vấn đề chính tìm thấy trong mã nguồn JSP cũ:
+
+| #     | Vị trí (dòng/thành phần)                 | Loại vấn đề                     | Mô tả chi tiết hậu quả                                                                                                                                                                                                                                                      |
+|:------|:-----------------------------------------|:--------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **1** | `<%! private int requestCounter = 0; %>` | **Race Condition (Đa luồng)**   | Biến được khai báo trong thẻ `<%! %>` là biến instance của Servlet. Vì Servlet là đơn bản (singleton), biến này được dùng chung cho mọi người dùng. Khi nhiều người truy cập cùng lúc, việc cộng dồn sẽ bị sai lệch (xung đột luồng), không phản ánh đúng lượt xem thực tế. |
+| **2** | `<!-- Tiêu đề trang báo cáo -->`         | **Comment HTML**                | Sử dụng `<!-- -->` khiến các ghi chú nội bộ bị gửi về trình duyệt khách hàng. Người dùng có thể chuột phải chọn "View Source" để đọc được các ghi chú này, gây rò rỉ thông tin về cấu trúc logic của hệ thống.                                                              |
+| **3** | `<%= sv.getScore()%>;`                   | **Syntax Error (Lỗi cú pháp)**  | Trong thẻ Expression `<%= %>`, trình biên dịch JSP sẽ tự động thêm mã vào lệnh `out.print()`. Việc dư dấu chấm phẩy `;` bên trong thẻ này sẽ tạo ra lỗi cú pháp Java khi biên dịch sang Servlet, dẫn đến lỗi **HTTP 500**.                                                  |
+| **4** | `<%= sv.getFullName() %>`                | **XSS (Cross-Site Scripting)**  | Dữ liệu được in trực tiếp ra trang web mà không qua kiểm soát. Nếu dữ liệu `fullName` chứa các thẻ `<script>`, mã độc sẽ được thực thi ngay trên trình duyệt của người dùng khác, gây nguy cơ mất an toàn thông tin.                                                        |
+| **5** | Khối code `if-else` xếp loại             | **Logic in View (Vi phạm MVC)** | Việc viết logic nghiệp vụ (tính toán điểm, xếp loại) trực tiếp bằng Java Scriptlet trong file JSP làm giao diện trở nên rối rắm, khó bảo trì, khó kiểm thử và vi phạm nguyên tắc tách biệt trách nhiệm trong mô hình MVC.                                                   |
+
+---

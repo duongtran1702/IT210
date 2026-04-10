@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="/main-layout (snapshot).html">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="/main-layout (snapshot).html" />
+              <option name="originalContent" value="&lt;!doctype html&gt;&#10;&lt;html lang=&quot;en&quot;&#10;      xmlns:layout=&quot;http://www.ultraq.net.nz/thymeleaf/layout&quot;&#10;      xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;&#10;&lt;head&gt;&#10;    &lt;meta charset=&quot;UTF-8&quot;&gt;&#10;    &lt;meta content=&quot;width=device-width, initial-scale=1.0&quot; name=&quot;viewport&quot;&gt;&#10;    &lt;title&gt;My App&lt;/title&gt;&#10;    &lt;link rel=&quot;stylesheet&quot; th:href=&quot;@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}&quot;&gt;&#10;    &lt;link rel=&quot;stylesheet&quot; th:href=&quot;@{/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css}&quot;&gt;&#10;&lt;/head&gt;&#10;&lt;body&gt;&#10;&#10;&lt;div class=&quot;container&quot;&gt;&#10;    &lt;div layout:fragment=&quot;content&quot;&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;footer class=&quot;text-center mt-5 py-3&quot;&gt;&#10;    &lt;p&gt;&amp;copy; 2026 - Atmin Chuột Bạch&lt;/p&gt;&#10;&lt;/footer&gt;&#10;&lt;/body&gt;&#10;&lt;/html&gt;" />
+              <option name="updatedContent" value="&lt;!doctype html&gt;&#10;&lt;html lang=&quot;en&quot;&#10;      xmlns:layout=&quot;http://www.ultraq.net.nz/thymeleaf/layout&quot;&#10;      xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;&#10;&lt;head&gt;&#10;    &lt;meta charset=&quot;UTF-8&quot;&gt;&#10;    &lt;meta content=&quot;width=device-width, initial-scale=1.0&quot; name=&quot;viewport&quot;&gt;&#10;    &lt;title&gt;My App&lt;/title&gt;&#10;    &lt;script src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;&#10;&lt;/head&gt;&#10;&lt;body&gt;&#10;&#10;&lt;div class=&quot;container&quot;&gt;&#10;    &lt;div layout:fragment=&quot;content&quot;&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;footer class=&quot;text-center mt-5 py-3&quot;&gt;&#10;    &lt;p&gt;&amp;copy; 2026 - Atmin Chuột Bạch&lt;/p&gt;&#10;&lt;/footer&gt;&#10;&lt;/body&gt;&#10;&lt;/html&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

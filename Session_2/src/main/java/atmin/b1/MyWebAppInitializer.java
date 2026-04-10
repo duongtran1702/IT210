@@ -1,0 +1,24 @@
+//package atmin.b1;
+//
+//import atmin.config.AppConfig;
+//import org.jspecify.annotations.NullMarked;
+//import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+//
+//public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+//
+//    @Override
+//    protected Class<?>[] getRootConfigClasses() {
+//        return null;
+//    }
+//
+//    @Override
+//    protected Class<?>[] getServletConfigClasses() {
+//        return new Class<?>[] { AppConfig.class };
+//    }
+//
+//    @Override
+//    @NullMarked
+//    protected String[] getServletMappings() {
+//        return new String[] { "/" };
+//    }
+//}
