@@ -1,18 +1,18 @@
-package atmin.model;
+package atmin.theory.model;
 
 public class Student {
     private Long id;
     private String name;
     private int age;
     private Gender gender;
+    private String avatar;
 
-    public  Student() {
-    }
-    public Student(Long id, String name, int age, Gender gender) {
+    public Student(Long id, String name, int age, Gender gender, String avatar) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
+        this.avatar = avatar;
     }
 
     public Long getId() {
@@ -45,5 +45,13 @@ public class Student {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

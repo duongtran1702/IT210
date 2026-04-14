@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="/food/save" method="post" enctype="multipart/form-data">
+    <label>Tên món ăn:</label>
+    <input type="text" name="name" required><br>
+
+    <label>Danh mục:</label>
+    <select name="category">
+        <option value="Khai vị">Khai vị</option>
+        <option value="Món chính">Món chính</option>
+        <option value="Đồ uống">Đồ uống</option>
+    </select><br>
+
+    <label>Giá tiền:</label>
+    <input type="number" name="price" step="0.01" required><br>
+
+    <label>Ảnh món ăn:</label>
+    <input type="file" name="image" accept="image/*"><br>
+
+    <p style="color: red;">${error}</p>
+    <button type="submit">Thêm món ăn</button>
+</form>
+</body>
+</html>

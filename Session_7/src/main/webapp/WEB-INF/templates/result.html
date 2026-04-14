@@ -2,20 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title></title>
 </head>
-<body class="bg-slate-100 flex flex-col items-center justify-center min-h-screen">
-<div class="bg-white p-5 rounded-lg shadow-md text-center">
-    <h3 class="text-sm font-bold text-gray-500 mb-4">KẾT QUẢ UPLOAD</h3>
-
-    <img th:src="@{'/images/' + ${imgName}}"
-         class="max-w-xs rounded border mb-4 shadow-sm" />
-
-    <div class="flex flex-col gap-2">
-        <span class="text-xs text-gray-400 italic" th:text="${imgName}"></span>
-        <a th:href="@{/upload/view-form}" class="text-blue-600 text-sm font-medium">Làm lại</a>
-    </div>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<div class="bg-white p-8 rounded-lg shadow-md text-center max-w-sm">
+    <h3 class="text-lg font-bold text-gray-700 mb-4">Tải ảnh thành công</h3>
+    <img th:src="@{'/images/' + ${imgName}}" class="w-40 h-40 rounded mx-auto mb-4" alt="Uploaded">
+    <p class="text-sm text-gray-600 mb-6" th:text="${imgName}"></p>
+    <a th:href="@{/upload/view-form}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 font-medium">Làm lại</a>
 </div>
 </body>
 </html>

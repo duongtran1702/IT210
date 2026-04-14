@@ -3,4 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+    <multipart-config>
+        <max-file-size>10485760</max-file-size>
+        <max-request-size>10485760</max-request-size>
+        <file-size-threshold>0</file-size-threshold>
+    </multipart-config>
 </web-app>

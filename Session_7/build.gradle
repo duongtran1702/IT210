@@ -28,7 +28,7 @@ dependencies {
     implementation("org.springframework:spring-webmvc:7.0.6")
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.4.0'
     implementation("org.thymeleaf:thymeleaf-spring6:3.1.4.RELEASE")
-    implementation("org.apache.commons:commons-fileupload2-jakarta:2.0.0-M1")
+    implementation("org.apache.commons:commons-fileupload2-jakarta-servlet6:2.0.0-M4")
 }
 
 test {
