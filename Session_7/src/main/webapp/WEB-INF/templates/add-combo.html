@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="/combo/save" method="post" enctype="multipart/form-data">
+    Tên Combo: <label>
+    <input type="text" name="comboName" required>
+</label><br><br>
+
+    Chọn món ăn (Ít nhất 2 món):<br>
+    <label>
+        <input type="checkbox" name="itemList" value="Gà rán">
+    </label> Gà rán <br>
+    <label>
+        <input type="checkbox" name="itemList" value="Khoai tây chiên">
+    </label> Khoai tây chiên <br>
+    <label>
+        <input type="checkbox" name="itemList" value="Coca Cola">
+    </label> Coca Cola <br>
+    <label>
+        <input type="checkbox" name="itemList" value="Hamburger">
+    </label> Hamburger <br><br>
+
+    <label>Banner quảng cáo (Tối đa 10MB):</label>
+    <input type="file" name="banner" accept="image/*"><br><br>
+
+    <p style="color: red;">${error}</p>
+    <button type="submit">Tạo Combo</button>
+</form>
+</body>
+</html>

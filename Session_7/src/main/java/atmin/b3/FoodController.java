@@ -61,7 +61,7 @@ public class FoodController {
             file.transferTo(dest);
 
             // Thêm vào List tĩnh
-            Food newFood = new Food(name, category, price, dest.getAbsolutePath());
+            Food newFood = new Food(name, category, price, "/images/" + fileName);
             foodList.add(newFood);
 
             // Xác nhận ra console

@@ -70,7 +70,7 @@ public class StudentController {
     }
 
     @GetMapping("/edit/{id}")
-    public String showFormEdit(Model model, @PathVariable("id") long id) {
+    public String showFormEdit(Model model, @PathVariable long id) {
         Optional<Student> s = students.stream().filter(st -> st.getId() == id).findFirst();
         if (s.isPresent()) {
             Student st = s.get();
